@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Love Score</title>
+  <style>
+    /* Center the container */
+    body, html {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #a04545;
+    }
+
+    /* Style the container */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      border-radius: 12px;
+    }
+
+    /* Style the card */
+    .card {
+      width: 400px;
+      padding: 50px;
+      background-color: #f1f1f1;
+      box-shadow: 0 15px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    /* Style the input section */
+    .card input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    /* Style the love button */
+    .love-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #a50707;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Style the love button on hover */
+    .love-button:hover {
+      background-color: #4d1414;
+    }
+
+    .love-score {
+      display: none;
+      font-size: 40px;
+      background: #fff;
+      font-weight: bold;
+      width: 400px;
+      padding: 50px;
+      margin-top: 20px;
+      text-align: center;
+      border-radius: 10px;
+      color: #a04545;
+    }
+
+    .reset-button {
+      display: none;
+      width: 100%;
+      padding: 10px;
+      background-color: #a50707;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .reset-button:hover {
+      background-color: #4d1414;
+    }
+      /* Media queries for responsiveness */
+      @media (max-width: 480px) {
+        .card {
+          padding: 15px;
+        }
+  
+        .love-score {
+          font-size: 30px;
+          padding: 40px;
+        }
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="cards">
+      <div class="card">
+        <input type="text" placeholder="Enter your name" id="name1" autocomplete="off">
+      </div>
+      <div class="card">
+        <input type="text" placeholder="Enter their name" id="name2" autocomplete="off">
+      </div>
+    </div>
+    <button class="love-button" onclick="calculate()">Love</button>
+  </div>
+  <div class="res">
+    <div class="love-score" id="loveText"></div>
+  <button class="reset-button" onclick="resetPage()">Check Again</button>
+  </div>
+</body>
+<script>
+function calculate() {
+  const name1 = document.getElementById('name1').value;
+  const name2 = document.getElementById('name2').value;
+
+  if (name1.trim() === '' || name2.trim() === '') {
+    alert('Please fill in both fields.');
+    return;
+  }
+
+  var loveScore = Math.random() * 100;
+  loveScore = Math.floor(loveScore) + 1;
+
+  document.getElementById('loveText').textContent = `${name1} loves ${name2} ❤ ${loveScore}% from others 😁`;
+  document.querySelector('.container').style.display = 'none';
+  document.querySelector('.love-score').style.display = 'block';
+  document.querySelector('.reset-button').style.display = 'block';
+
+  name1.value = '';
+  name2.value = '';
+}
+
+function resetPage() {
+  document.querySelector('.container').style.display = 'flex';
+  document.querySelector('.love-score').style.display = 'none';
+  document.querySelector('.reset-button').style.display = 'none';
+  name1.value = '';
+  name2.value = '';
+}
+</script>
+</html>
